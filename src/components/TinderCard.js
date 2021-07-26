@@ -8,8 +8,15 @@ const images = [
   "/besito.jpg",
 ];
 
+const messages = [
+  "Desde nuestra primera vez juntas...",
+  "...supe que quería las aventuras de la vida...",
+  "...y compartirme completa contigo.",
+  "Me da felicidad pensar en una vida contigo.",
+  "¿Quieres ser mi novia?",
+];
+
 const Card = styled.div`
-  border: 2px solid red;
   border-radius: 5px;
 
   display: grid;
@@ -26,11 +33,9 @@ const ProfileImage = styled.img`
   aspect-ratio: 16 / 9;
   object-fit: cover;
   z-index: 0;
-`;
-
-const Title = styled.h1`
-  font-family: "Great Vibes";
-  text-align: center;
+  margin-left: 9px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px gray, 2px 2px 1px gray, 3px 3px 1px lightgray;
 `;
 
 const Bio = styled.h2`
@@ -42,25 +47,61 @@ const Bio = styled.h2`
 
 const ButtonBox = styled.div`
   text-align: center;
+  visibility: ${({ isShown }) => (isShown ? "" : "hidden")};
+
+  && button {
+    font-family: "Great Vibes";
+    font-weight: bold;
+    font-size: 1.2em;
+    background-color: #c3b3ea;
+    margin: 5px;
+    border: 1px solid #c3b3ea;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px gray;
+  }
 `;
 
 const ProgressItem = styled.li`
   list-style: none;
   border-bottom: ${({ currentImage, id }) =>
     id === currentImage ? "3px solid white" : "3px solid darkgray"};
-  margin: 5px;
+  margin: 0 5px;
   display: inline-block;
   z-index: 1;
+  width: ${({ imgCount }) => "calc(100%/imgCount)"};
 `;
 
 const UL = styled.ul`
   position: absolute;
   z-index: 1;
-  font-family: "Gorditas", sans-serif;
   padding: 0.5rem;
-  align-self: flex-start;
   margin-top: 30px;
-  width: 90%;
+  justify-content: space-evenly;
+`;
+
+const ButtonsOverlay = styled.div`
+  width: 50%;
+  max-height: 190px;
+  position: absolute;
+  height: 100%;
+  z-index: 2;
+`;
+
+const CardStack = styled.div`
+  padding: 0;
+  max-width: max-content;
+  max-height: min-content;
+`;
+
+const CardStack2 = styled.div`
+  padding: 0;
+  max-width: max-content;
+  max-height: min-content;
+  position: absolute;
+  z-index: -1;
+  border-radius: 1px;
+  opacity: 0.5;
+  transform: translate(3px, -46px);
 `;
 
 function TinderCard({ currentImage, setCurrentImage }) {
@@ -75,32 +116,38 @@ function TinderCard({ currentImage, setCurrentImage }) {
     </ProgressItem>
   ));
 
-  const ButtonsOverlay = styled.div`
-    width: 50%;
-    max-height: 190px;
-    position: absolute;
-    height: 100%;
-    z-index: 2;
-  `;
+  const cardStackImages = images
+    .filter((img, idx) => idx > currentImage)
+    .map((img, idx) => {
+      return (
+        <CardStack2 idx={idx}>
+          <ProfileImage src={images[currentImage + 1]} />
+        </CardStack2>
+      );
+    });
+
   return (
-    <Card>
-      <Title>Love 🥨 Story</Title>
-      <div style={{ maxWidth: "max-content", maxHeight: "190px" }}>
-        <ButtonsOverlay
-          onClick={() => setCurrentImage(previousImage)}
-        ></ButtonsOverlay>
-        <ProfileImage
-          src={images[currentImage]}
-          onClick={() => setCurrentImage(nextImage)}
-        />
-      </div>
-      <UL>{progressBarItem}</UL>
-      {/* <Bio>¿Quieres ser mi novia?</Bio> */}
-      <ButtonBox>
-        <button>Yes</button>
-        <button>Si♥️</button>
+    <>
+      <Card>
+        <CardStack>
+          <ButtonsOverlay
+            onClick={() => setCurrentImage(previousImage)}
+          ></ButtonsOverlay>
+          <ProfileImage
+            draggable={true}
+            src={images[currentImage]}
+            onClick={() => setCurrentImage(nextImage)}
+          />
+        </CardStack>
+        {cardStackImages}
+        <UL>{progressBarItem}</UL>
+        <Bio>{messages[currentImage]}</Bio>
+      </Card>
+      <ButtonBox isShown={currentImage === images.length - 1}>
+        <button>❌ No</button>
+        <button>✅ Si</button>
       </ButtonBox>
-    </Card>
+    </>
   );
 }
 

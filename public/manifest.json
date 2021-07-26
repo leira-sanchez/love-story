@@ -3,19 +3,9 @@
   "name": "Ive & Leira's Love Story",
   "icons": [
     {
-      "src": "besito.jpg",
+      "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
-    },
-    {
-      "src": "besito.jpg",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "besito.jpg",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ],
   "start_url": ".",
