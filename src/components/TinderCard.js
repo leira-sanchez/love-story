@@ -110,10 +110,12 @@ const CardStack2 = styled.div`
   transform: translate(3px, -46px);
 `;
 
-function TinderCard({ currentImage, setCurrentImage }) {
-  const [isModalShown, setIsModalShown] = useState(false);
-  const [answer, setAnswer] = useState("");
-
+function TinderCard({
+  currentImage,
+  setCurrentImage,
+  setIsModalShown,
+  setAnswer,
+}) {
   const nextImage =
     currentImage + 1 > images.length - 1 ? currentImage : currentImage + 1;
 
@@ -161,7 +163,6 @@ function TinderCard({ currentImage, setCurrentImage }) {
         {cardStackImages}
         <UL>{progressBarItems}</UL>
         <Bio>{messages[currentImage]}</Bio>
-        {isModalShown && <Modal answer={answer} />}
       </Card>
       <ButtonBox isShown={currentImage === images.length - 1}>
         <button onClick={(e) => onClick(e)}>❌ No</button>

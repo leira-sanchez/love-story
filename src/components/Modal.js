@@ -7,21 +7,30 @@ const ModalBox = styled.div`
   border-radius: 5px;
   box-shadow: 2px 2px 2px gray;
   padding: 20px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 `;
 
-function Modal({ answer }) {
+const CloseButton = styled.button`
+  float: right;
+  box-shadow: 1px 1px 1px gray;
+`;
+
+function Modal({ answer, setIsModalShown }) {
   return (
     <ModalBox>
-      {answer.includes("Si") ? (
-        <>
-          <h1>¡Bésame!</h1>
-          <p>¡Feliz aniversario #0!</p>
-        </>
-      ) : (
-        <>
+      <>
+        <CloseButton onClick={() => setIsModalShown(false)}>X</CloseButton>
+        {answer.includes("Si") ? (
+          <>
+            <h1>¡Bésame!</h1>
+            <p>¡Feliz aniversario #0!</p>
+          </>
+        ) : (
           <h1>🖕🏼</h1>
-        </>
-      )}
+        )}
+      </>
     </ModalBox>
   );
 }
