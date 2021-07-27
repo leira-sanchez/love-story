@@ -22,9 +22,6 @@ const SignTitle = styled.h2`
 `;
 
 const SignDescription = styled.p`
-  /* text-align: center; */
-  /* flex-wrap: wrap; */
-  /* margin-left: 25px; */
   width: 100%;
 `;
 
@@ -38,13 +35,22 @@ const CompatibilityDescription = styled.p`
   margin: 15px;
 `;
 
+const PersonInfo = styled.div`
+  font-family: "Encode Sans SC";
+  text-align: center;
+`;
+
 function Horoscopo() {
   return (
     <>
       <PersonProfile>
-        <PhotoWrapper>
-          <ProfilePhoto src="ive1-circle.png" />
-        </PhotoWrapper>
+        <PersonInfo>
+          <PhotoWrapper>
+            <ProfilePhoto src="ive1-circle.png" />
+          </PhotoWrapper>
+          <h3>Ivette</h3>
+          <p>23 de abril</p>
+        </PersonInfo>
         <div style={{ maxWidth: "50%" }}>
           <SignTitle>Tauro</SignTitle>
           <SignDescription>
@@ -65,9 +71,13 @@ function Horoscopo() {
             los misterios de la vida y por el lado oculto de las cosas.
           </SignDescription>
         </div>
-        <PhotoWrapper>
-          <ProfilePhoto src="leira-circle.png" />
-        </PhotoWrapper>
+        <PersonInfo>
+          <PhotoWrapper>
+            <ProfilePhoto src="leira-circle.png" />
+          </PhotoWrapper>
+          <h3>Leira</h3>
+          <p>28 de octubre</p>
+        </PersonInfo>
       </PersonProfile>
       <section>
         <SignTitle>Compatibilidad Zodiacal</SignTitle>

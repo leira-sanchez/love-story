@@ -1,4 +1,7 @@
+import { useState } from "react";
 import styled from "styled-components";
+
+import Modal from "./Modal";
 
 const images = [
   "first.jpg",
@@ -65,18 +68,21 @@ const ProgressItem = styled.li`
   list-style: none;
   border-bottom: ${({ currentImage, id }) =>
     id === currentImage ? "3px solid white" : "3px solid darkgray"};
-  margin: 0 5px;
+  margin: 4px;
   display: inline-block;
   z-index: 1;
-  width: ${({ imgCount }) => "calc(100%/imgCount)"};
+  min-width: ${({ imgCount }) => `calc(80%/${imgCount})`};
 `;
 
 const UL = styled.ul`
   position: absolute;
   z-index: 1;
-  padding: 0.5rem;
-  margin-top: 30px;
+  padding: 0 0.5rem;
+  /* margin-top: 40px; */
   justify-content: space-evenly;
+  min-width: 90%;
+  display: flex;
+  align-items: flex-end;
 `;
 
 const ButtonsOverlay = styled.div`
@@ -105,14 +111,22 @@ const CardStack2 = styled.div`
 `;
 
 function TinderCard({ currentImage, setCurrentImage }) {
+  const [isModalShown, setIsModalShown] = useState(false);
+  const [answer, setAnswer] = useState("");
+
   const nextImage =
     currentImage + 1 > images.length - 1 ? currentImage : currentImage + 1;
 
   const previousImage = currentImage - 1 < 0 ? 0 : currentImage - 1;
 
-  const progressBarItem = images.map((img, idx) => (
-    <ProgressItem id={idx} imgCount={images.length} currentImage={currentImage}>
-      <p style={{ opacity: "0" }}>hellohe</p>
+  const progressBarItems = images.map((img, idx) => (
+    <ProgressItem
+      currentImage={currentImage}
+      id={idx}
+      imgCount={images.length}
+      key={img}
+    >
+      <p style={{ opacity: "0" }}></p>
     </ProgressItem>
   ));
 
@@ -125,6 +139,11 @@ function TinderCard({ currentImage, setCurrentImage }) {
         </CardStack2>
       );
     });
+
+  const onClick = (e) => {
+    setIsModalShown(true);
+    setAnswer(e.target.innerHTML);
+  };
 
   return (
     <>
@@ -140,12 +159,13 @@ function TinderCard({ currentImage, setCurrentImage }) {
           />
         </CardStack>
         {cardStackImages}
-        <UL>{progressBarItem}</UL>
+        <UL>{progressBarItems}</UL>
         <Bio>{messages[currentImage]}</Bio>
+        {isModalShown && <Modal answer={answer} />}
       </Card>
       <ButtonBox isShown={currentImage === images.length - 1}>
-        <button>❌ No</button>
-        <button>✅ Si</button>
+        <button onClick={(e) => onClick(e)}>❌ No</button>
+        <button onClick={(e) => onClick(e)}>✅ Si</button>
       </ButtonBox>
     </>
   );
