@@ -18,7 +18,6 @@ const messages = [
 
 const Card = styled.div`
   border-radius: 5px;
-
   display: grid;
   grid-template: "container";
   place-items: center;

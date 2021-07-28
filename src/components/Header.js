@@ -1,6 +1,5 @@
 import { Burger, Menu } from "./Menu";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 const Title = styled.h1`
   font-family: "Great Vibes";
