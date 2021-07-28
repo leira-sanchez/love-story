@@ -37,20 +37,18 @@ function Nosotras() {
         position: "relative",
         border: "2px solid green",
         display: "flex",
-        height: "413.33px",
+        height: "100vh",
         width: "calc(100vw - 50px)",
       }}
     >
       <ProfilePic src="ive1.jpg" />
-      <div>
-        <UL>
-          <li>hellohe</li>
-          <li>hellohe</li>
-          <li>hellohe</li>
-          <li>hellohe</li>
-          <li>hellohe</li>
-        </UL>
-      </div>
+      <UL>
+        <li>hellohe</li>
+        <li>hellohe</li>
+        <li>hellohe</li>
+        <li>hellohe</li>
+        <li>hellohe</li>
+      </UL>
       <BioBox>
         <h2 style={{ display: "inline-block", marginRight: "5px" }}>Ive</h2>
         <span>35</span>

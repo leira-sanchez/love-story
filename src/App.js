@@ -7,6 +7,7 @@ import Nosotras from "./components/Nosotras";
 import Header from "./components/Header";
 import Horoscopo from "./components/Horoscopo";
 import Modal from "./components/Modal";
+import InstaGallery from "./components/InstaGallery";
 
 function App() {
   const [currentImage, setCurrentImage] = useState(0);
@@ -18,13 +19,12 @@ function App() {
   background-color: black;
   opacity: 0.35;
   height: 100vh;
-  position: absolute;
+  position:relative;
   z-index: -1;
   `;
 
   const DimmingDiv = styled.div`
     height: 100vh;
-    position: absolute;
     z-index: -1;
 
     ${({ isModalShown }) =>
@@ -47,7 +47,10 @@ function App() {
             <Route path="/horoscopo">
               <Horoscopo />
             </Route>
-            <Route path="/">
+            <Route path="/aventuras">
+              <InstaGallery />
+            </Route>
+            <Route path="/love-story">
               <TinderCard
                 currentImage={currentImage}
                 setCurrentImage={setCurrentImage}
