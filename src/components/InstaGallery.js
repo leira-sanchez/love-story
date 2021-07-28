@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import aventuras from "../aventuras";
+
 const ItemBox = styled.div`
   margin: 20px 0;
 `;
@@ -22,26 +24,34 @@ const ImageSubTitle = styled.p`
   margin: 3px;
 `;
 
-function InstaGallery() {
+const allGalleryItems = aventuras.map((item) => {
   return (
     <ItemBox>
-      <h2>Nuestras Aventuras</h2>
       {/* maybe una foto del pueblo (nombre o mapa or both) */}
       <div
         style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
       >
-        <span role="img" aria-label="price" style={{ fontSize: "2em" }}>
+        <span role="img" aria-label="price" style={{ fontSize: "2.5em" }}>
           🗺
         </span>
         <div>
           <ImageTitle>
-            <strong>Image Title</strong>
+            <strong>{item.title}</strong>
           </ImageTitle>
-          <ImageSubTitle>Pueblo, Puerto Rico</ImageSubTitle>
+          <ImageSubTitle>{item.subtitle}</ImageSubTitle>
         </div>
       </div>
-      <GalleryImage src="/ive2.jpg" />
+      <GalleryImage src={item.src} />
     </ItemBox>
+  );
+});
+
+function InstaGallery() {
+  return (
+    <>
+      <h2>Nuestras Aventuras</h2>
+      {allGalleryItems}
+    </>
   );
 }
 
