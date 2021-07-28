@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 const ProfilePic = styled.img`
   aspect-ratio: 16/9;
@@ -33,13 +33,13 @@ const UL = styled.ul`
 function Nosotras() {
   return (
     <div
-      style={{
-        position: "relative",
-        border: "2px solid green",
-        display: "flex",
-        height: "100vh",
-        width: "calc(100vw - 50px)",
-      }}
+      css="
+        position: relative;
+        border: 2px solid green;
+        display: flex;
+        height: 100vh;
+        width: calc(100vw - 50px);
+        "
     >
       <ProfilePic src="ive1.jpg" />
       <UL>

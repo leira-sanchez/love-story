@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled, { css } from "styled-components";
 
+// TODO: create an index for these
 import TinderCard from "./components/TinderCard";
 import Nosotras from "./components/Nosotras";
 import Header from "./components/Header";
@@ -44,11 +45,11 @@ function App() {
             <Route path="/nosotras">
               <Nosotras />
             </Route>
-            <Route path="/horoscopo">
-              <Horoscopo />
-            </Route>
             <Route path="/aventuras">
               <InstaGallery />
+            </Route>
+            <Route path="/horoscopo">
+              <Horoscopo />
             </Route>
             <Route path="/love-story">
               <TinderCard
@@ -57,6 +58,9 @@ function App() {
                 setIsModalShown={setIsModalShown}
                 setAnswer={setAnswer}
               />
+            </Route>
+            <Route path="/">
+              <Nosotras />
             </Route>
           </Switch>
         </Router>

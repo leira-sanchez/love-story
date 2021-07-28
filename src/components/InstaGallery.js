@@ -27,7 +27,7 @@ const ImageSubTitle = styled.p`
 const allGalleryItems = aventuras.map((item) => {
   return (
     <ItemBox>
-      {/* maybe una foto del pueblo (nombre o mapa or both) */}
+      {/* TODO: Make this styled components */}
       <div
         style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
       >
@@ -49,6 +49,7 @@ const allGalleryItems = aventuras.map((item) => {
 function InstaGallery() {
   return (
     <>
+      {/* TODO: center this. Change font */}
       <h2>Nuestras Aventuras</h2>
       {allGalleryItems}
     </>

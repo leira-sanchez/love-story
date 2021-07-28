@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 const PhotoWrapper = styled.div`
   max-width: 100px;
@@ -51,7 +51,7 @@ function Horoscopo() {
           <h3>Ivette</h3>
           <p>23 de abril</p>
         </PersonInfo>
-        <div style={{ maxWidth: "50%" }}>
+        <div css="max-width: 55%;">
           <SignTitle>Tauro</SignTitle>
           <SignDescription>
             Se caracteriza por ser plácido gran parte del tiempo, como impetuoso

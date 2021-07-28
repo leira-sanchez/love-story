@@ -1,7 +1,4 @@
-import { useState } from "react";
 import styled from "styled-components";
-
-import Modal from "./Modal";
 
 const images = [
   "first.jpg",
@@ -12,10 +9,10 @@ const images = [
 ];
 
 const messages = [
-  "Desde nuestra primera vez juntas...",
-  "...supe que quería las aventuras de la vida...",
-  "...y compartirme completa contigo.",
-  "Me da felicidad pensar en una vida contigo.",
+  "El amor nunca ha sido lo mío...",
+  "...pero contigo no he dejado de soñar.",
+  "Tú me tienes así, loca por descubrir",
+  "Lo fácil que se te hace hacerme reír",
   "¿Quieres ser mi novia?",
 ];
 
@@ -78,7 +75,6 @@ const UL = styled.ul`
   position: absolute;
   z-index: 1;
   padding: 0 0.5rem;
-  /* margin-top: 40px; */
   justify-content: space-evenly;
   min-width: 90%;
   display: flex;
@@ -165,8 +161,8 @@ function TinderCard({
         <Bio>{messages[currentImage]}</Bio>
       </Card>
       <ButtonBox isShown={currentImage === images.length - 1}>
-        <button onClick={(e) => onClick(e)}>❌ No</button>
-        <button onClick={(e) => onClick(e)}>✅ Si</button>
+        <button onClick={(e) => onClick(e)}>No ❌ </button>
+        <button onClick={(e) => onClick(e)}>Si ✅ </button>
       </ButtonBox>
     </>
   );
