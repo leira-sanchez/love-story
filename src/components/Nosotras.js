@@ -1,11 +1,12 @@
 import styled from "styled-components/macro";
 
+const ivesPhotos = ["/ive1.jpg", "/ive2.jpg", "/ive3.jpg"];
+
 const ProfilePic = styled.img`
   aspect-ratio: 16/9;
   object-fit: cover;
   max-width: calc(100vw - 20px);
   border-radius: 5px;
-  /* position: relative; */
   z-index: 1;
   float: none;
   filter: drop-shadow(2px 2px 2px gray);
@@ -28,15 +29,14 @@ const UL = styled.ul`
   position: absolute;
   z-index: 1;
   padding: 0.5rem;
-  margin-top: 30px;
+  margin-top: 0;
   justify-content: space-evenly;
   top: 0;
   border: 2px solid blue;
-  width: calc(100vw - 20px);
+  min-width: calc(100vw - 20px);
 `;
 
 const ProfileBox = styled.div`
-  /* border: 2px solid green; */
   position: absolute;
   left: 0;
   right: 0;
@@ -48,18 +48,45 @@ const ProfileBox = styled.div`
   }
 `;
 
-function Nosotras() {
+const Title = styled.h2`
+  text-align: center;
+  font-family: "Amatic SC";
+`;
+
+const ProgressItem = styled.li`
+  list-style: none;
+  border-bottom: ${({ currentImage, id }) =>
+    id === currentImage ? "3px solid white" : "3px solid darkgray"};
+  margin: 4px;
+  display: inline-block;
+  z-index: 1;
+  min-width: ${({ imgCount }) => `calc(80%/${imgCount})`};
+`;
+
+function Nosotras({ currentImage, setCurrentImage }) {
+  console.log({ currentImage });
+  console.log({ setCurrentImage });
+
+  const nextImage =
+    currentImage + 1 > ivesPhotos.length - 1 ? currentImage : currentImage + 1;
+
+  const previousImage = currentImage - 1 < 0 ? 0 : currentImage - 1;
+
+  const progressBarItems = ivesPhotos.map((img, idx) => (
+    <ProgressItem
+      currentImage={currentImage}
+      id={idx}
+      imgCount={ivesPhotos.length}
+      key={img}
+    ></ProgressItem>
+  ));
+
   return (
     <>
+      <Title>Nosotras</Title>
       <ProfileBox>
-        <ProfilePic src="ive2.jpg" />
-        <UL>
-          <li>hellohe</li>
-          <li>hellohe</li>
-          <li>hellohe</li>
-          <li>hellohe</li>
-          <li>hellohe</li>
-        </UL>
+        <ProfilePic onClick={() => setCurrentImage(nextImage)} src="ive1.jpg" />
+        <UL>{progressBarItems}</UL>
         <BioBox>
           <h2
             style={{

@@ -122,9 +122,7 @@ function TinderCard({
       id={idx}
       imgCount={images.length}
       key={img}
-    >
-      <p style={{ opacity: "0" }}></p>
-    </ProgressItem>
+    ></ProgressItem>
   ));
 
   const cardStackImages = images

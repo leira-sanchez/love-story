@@ -43,7 +43,10 @@ function App() {
         <Router>
           <Switch>
             <Route path="/nosotras">
-              <Nosotras />
+              <Nosotras
+                currentImage={currentImage}
+                setCurrentImage={setCurrentImage}
+              />
             </Route>
             <Route path="/aventuras">
               <InstaGallery />
