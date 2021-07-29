@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 const ivesPhotos = ["ive1.jpg", "ive2.jpg", "ive3.jpg"];
@@ -62,8 +61,16 @@ const Title = styled.h2`
 
 const ProgressItem = styled.li`
   list-style: none;
-  border-bottom: ${({ currentImage, id }) =>
-    id === currentImage ? "3px solid white" : "3px solid darkgray"};
+  border-bottom: ${({ currentImage, currentLeiraImage, id, img }) => {
+    if (img.includes("ive")) {
+      return id === currentImage ? "3px solid white" : "3px solid darkgray";
+    } else {
+      return id === currentLeiraImage
+        ? "3px solid white"
+        : "3px solid darkgray";
+    }
+  }};
+
   margin: 4px;
   display: inline-block;
   z-index: 1;
@@ -89,20 +96,22 @@ const IconTextBox = styled.div`
   align-items: center;
 `;
 
-function Nosotras({ currentImage, setCurrentImage }) {
-  const [currentLeiraImage, setCurrentLeiraImage] = useState(0);
-
+function Nosotras({
+  currentImage,
+  setCurrentImage,
+  currentLeiraImage,
+  setCurrentLeiraImage,
+}) {
   const nextImage = (photos) => {
     let currImg;
     if (photos[0].includes("leira")) currImg = currentLeiraImage;
     else currImg = currentImage;
-
     return currImg + 1 > photos.length - 1 ? currImg : currImg + 1;
   };
 
   const previousImage = (photos) => {
     let currImg;
-    if (photos[0].includes("leira")) currImg = currentImage;
+    if (photos[0].includes("leira")) currImg = currentLeiraImage;
     else currImg = currentImage;
     return currImg - 1 < 0 ? 0 : currImg - 1;
   };
@@ -110,18 +119,22 @@ function Nosotras({ currentImage, setCurrentImage }) {
   const progressBarItemsIve = ivesPhotos.map((img, idx) => (
     <ProgressItem
       currentImage={currentImage}
-      id={`ive-${idx}`}
+      currentLeiraImage={currentLeiraImage}
+      id={idx}
       imgCount={ivesPhotos.length}
       key={img}
+      img={img}
     ></ProgressItem>
   ));
 
   const progressBarItemsLeira = leirasPhotos.map((img, idx) => (
     <ProgressItem
-      currentImage={currentLeiraImage}
-      id={`leira-${idx}`}
+      currentImage={currentImage}
+      currentLeiraImage={currentLeiraImage}
+      id={idx}
       imgCount={leirasPhotos.length}
       key={img}
+      img={img}
     ></ProgressItem>
   ));
 
@@ -143,7 +156,6 @@ function Nosotras({ currentImage, setCurrentImage }) {
 
   return (
     <>
-      {/* TODO: algo raro cuando empiezo a pasar las fotos de ive, hace como refresh */}
       <Title>Nosotras</Title>
       <div style={{ marginBottom: "50px" }}>
         <ProfileBox>

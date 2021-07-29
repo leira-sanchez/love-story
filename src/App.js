@@ -12,6 +12,7 @@ import InstaGallery from "./components/InstaGallery";
 
 function App() {
   const [currentImage, setCurrentImage] = useState(0);
+  const [currentLeiraImage, setCurrentLeiraImage] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalShown, setIsModalShown] = useState(false);
   const [answer, setAnswer] = useState("");
@@ -46,6 +47,8 @@ function App() {
               <Nosotras
                 currentImage={currentImage}
                 setCurrentImage={setCurrentImage}
+                currentLeiraImage={currentLeiraImage}
+                setCurrentLeiraImage={setCurrentLeiraImage}
               />
             </Route>
             <Route path="/aventuras">
@@ -66,6 +69,8 @@ function App() {
               <Nosotras
                 currentImage={currentImage}
                 setCurrentImage={setCurrentImage}
+                currentLeiraImage={currentLeiraImage}
+                setCurrentLeiraImage={setCurrentLeiraImage}
               />
             </Route>
           </Switch>
