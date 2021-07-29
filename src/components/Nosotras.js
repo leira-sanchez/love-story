@@ -1,7 +1,8 @@
-import styled from "styled-components/macro";
+import { useState } from "react";
+import styled from "styled-components";
 
-const ivesPhotos = ["/ive1.jpg", "/ive2.jpg", "/ive3.jpg"];
-const leiraPhotos = ["leira1.jpeg", "leira2.jpeg", "leira3.jpeg"];
+const ivesPhotos = ["ive1.jpg", "ive2.jpg", "ive3.jpg"];
+const leirasPhotos = ["leira1.jpeg", "leira2.jpeg", "leira3.jpeg"];
 
 const ProfilePic = styled.img`
   aspect-ratio: 16/9;
@@ -24,6 +25,12 @@ const BioBox = styled.div`
   padding: 10px;
   font-size: 12px;
   font-weight: lighter;
+
+  h2 {
+    font-size: 2em;
+    display: inline-block;
+    margin-right: 5px;
+  }
 `;
 
 const UL = styled.ul`
@@ -70,12 +77,6 @@ const ButtonsOverlay = styled.div`
   z-index: 2;
 `;
 
-const Name = styled.h2`
-  font-size: 2em;
-  display: inline-block;
-  margin-right: 5px;
-`;
-
 const BioIcon = styled.img`
   width: 16px;
   height: 16px;
@@ -89,35 +90,74 @@ const IconTextBox = styled.div`
 `;
 
 function Nosotras({ currentImage, setCurrentImage }) {
-  const nextImage =
-    currentImage + 1 > ivesPhotos.length - 1 ? currentImage : currentImage + 1;
+  const [currentLeiraImage, setCurrentLeiraImage] = useState(0);
 
-  const previousImage = currentImage - 1 < 0 ? 0 : currentImage - 1;
+  const nextImage = (photos) => {
+    let currImg;
+    if (photos[0].includes("leira")) currImg = currentLeiraImage;
+    else currImg = currentImage;
 
-  const progressBarItems = ivesPhotos.map((img, idx) => (
+    return currImg + 1 > photos.length - 1 ? currImg : currImg + 1;
+  };
+
+  const previousImage = (photos) => {
+    let currImg;
+    if (photos[0].includes("leira")) currImg = currentImage;
+    else currImg = currentImage;
+    return currImg - 1 < 0 ? 0 : currImg - 1;
+  };
+
+  const progressBarItemsIve = ivesPhotos.map((img, idx) => (
     <ProgressItem
       currentImage={currentImage}
-      id={idx}
+      id={`ive-${idx}`}
       imgCount={ivesPhotos.length}
       key={img}
     ></ProgressItem>
   ));
 
+  const progressBarItemsLeira = leirasPhotos.map((img, idx) => (
+    <ProgressItem
+      currentImage={currentLeiraImage}
+      id={`leira-${idx}`}
+      imgCount={leirasPhotos.length}
+      key={img}
+    ></ProgressItem>
+  ));
+
+  function onClickNext(e) {
+    if (e.target.currentSrc.includes("leira")) {
+      setCurrentLeiraImage(nextImage(leirasPhotos));
+    } else {
+      setCurrentImage(nextImage(ivesPhotos));
+    }
+  }
+
+  function onClickPrevious(e) {
+    if (e.target.id.includes("leira")) {
+      setCurrentLeiraImage(previousImage(leirasPhotos));
+    } else {
+      setCurrentImage(previousImage(ivesPhotos));
+    }
+  }
+
   return (
     <>
+      {/* TODO: algo raro cuando empiezo a pasar las fotos de ive, hace como refresh */}
       <Title>Nosotras</Title>
       <div style={{ marginBottom: "50px" }}>
         <ProfileBox>
           <ButtonsOverlay
-            onClick={() => setCurrentImage(previousImage)}
+            id="ive"
+            onClick={(e) => onClickPrevious(e)}
           ></ButtonsOverlay>
           <ProfilePic
-            onClick={() => setCurrentImage(nextImage)}
+            onClick={(e) => onClickNext(e)}
             src={ivesPhotos[currentImage]}
           />
-          <UL>{progressBarItems}</UL>
+          <UL>{progressBarItemsIve}</UL>
           <BioBox>
-            <Name>Ive</Name>
+            <h2>Ive</h2>
             <span style={{ fontSize: "1.4em" }}>35</span>
             <IconTextBox>
               <BioIcon src="https://img.icons8.com/windows/32/ffffff/suitcase.png" />
@@ -137,15 +177,16 @@ function Nosotras({ currentImage, setCurrentImage }) {
       <div>
         <ProfileBox>
           <ButtonsOverlay
-            onClick={() => setCurrentImage(previousImage)}
+            id="leira"
+            onClick={(e) => onClickPrevious(e)}
           ></ButtonsOverlay>
           <ProfilePic
-            onClick={() => setCurrentImage(nextImage)}
-            src={leiraPhotos[currentImage]}
+            onClick={(e) => onClickNext(e)}
+            src={leirasPhotos[currentLeiraImage]}
           />
-          <UL>{progressBarItems}</UL>
+          <UL>{progressBarItemsLeira}</UL>
           <BioBox>
-            <Name>Leira</Name>
+            <h2>Leira</h2>
             <span style={{ fontSize: "1.4em" }}>29</span>
             <IconTextBox>
               <BioIcon src="https://img.icons8.com/windows/32/ffffff/suitcase.png" />

@@ -18,7 +18,7 @@ const CloseButton = styled.button`
 `;
 
 function Modal({ answer, setIsModalShown }) {
-  // TODO: prettify these modals
+  // TODO: prettify these modals, add locks
   return (
     <ModalBox>
       <>
