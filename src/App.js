@@ -63,7 +63,10 @@ function App() {
               />
             </Route>
             <Route path="/">
-              <Nosotras />
+              <Nosotras
+                currentImage={currentImage}
+                setCurrentImage={setCurrentImage}
+              />
             </Route>
           </Switch>
         </Router>

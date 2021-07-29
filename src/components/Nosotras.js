@@ -32,7 +32,6 @@ const UL = styled.ul`
   margin-top: 0;
   justify-content: space-evenly;
   top: 0;
-  border: 2px solid blue;
   min-width: calc(100vw - 20px);
 `;
 
@@ -63,10 +62,14 @@ const ProgressItem = styled.li`
   min-width: ${({ imgCount }) => `calc(80%/${imgCount})`};
 `;
 
-function Nosotras({ currentImage, setCurrentImage }) {
-  console.log({ currentImage });
-  console.log({ setCurrentImage });
+const ButtonsOverlay = styled.div`
+  width: 50%;
+  position: absolute;
+  height: 100%;
+  z-index: 2;
+`;
 
+function Nosotras({ currentImage, setCurrentImage }) {
   const nextImage =
     currentImage + 1 > ivesPhotos.length - 1 ? currentImage : currentImage + 1;
 
@@ -85,7 +88,13 @@ function Nosotras({ currentImage, setCurrentImage }) {
     <>
       <Title>Nosotras</Title>
       <ProfileBox>
-        <ProfilePic onClick={() => setCurrentImage(nextImage)} src="ive1.jpg" />
+        <ButtonsOverlay
+          onClick={() => setCurrentImage(previousImage)}
+        ></ButtonsOverlay>
+        <ProfilePic
+          onClick={() => setCurrentImage(nextImage)}
+          src={ivesPhotos[currentImage]}
+        />
         <UL>{progressBarItems}</UL>
         <BioBox>
           <h2
