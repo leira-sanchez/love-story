@@ -10,6 +10,12 @@ const ModalBox = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  width: max-content;
+  text-align: center;
+
+  span {
+    font-size: 2em;
+  }
 `;
 
 const CloseButton = styled.button`
@@ -18,7 +24,6 @@ const CloseButton = styled.button`
 `;
 
 function Modal({ answer, setIsModalShown }) {
-  // TODO: prettify these modals, add locks
   return (
     <ModalBox>
       <>
@@ -26,10 +31,11 @@ function Modal({ answer, setIsModalShown }) {
         {answer.includes("Si") ? (
           <>
             <h1>¡Bésame!</h1>
+            <span>🔓</span>
             <p>¡Feliz aniversario #0!</p>
           </>
         ) : (
-          <h1>🖕🏼</h1>
+          <h1>🖕🏼🔒</h1>
         )}
       </>
     </ModalBox>

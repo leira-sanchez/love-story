@@ -2,13 +2,14 @@ import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-// TODO: create an index for these
-import TinderCard from "./components/TinderCard";
-import Nosotras from "./components/Nosotras";
-import Header from "./components/Header";
-import Horoscopo from "./components/Horoscopo";
-import Modal from "./components/Modal";
-import InstaGallery from "./components/InstaGallery";
+import {
+  Header,
+  Horoscopo,
+  InstaGallery,
+  Modal,
+  Nosotras,
+  TinderCard,
+} from "./components";
 
 function App() {
   const [currentImage, setCurrentImage] = useState(0);
