@@ -24,23 +24,35 @@ const ImageSubTitle = styled.p`
   margin: 3px;
 `;
 
+const GalleryTitle = styled.h2`
+  text-align: center;
+  font-family: "Amatic SC";
+`;
+
+const ItemInfoBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const GalleryItemIcon = styled.span`
+  font-size: 2.5em;
+`;
+
 const allGalleryItems = aventuras.map((item) => {
   return (
     <ItemBox>
-      {/* TODO: Make this styled components */}
-      <div
-        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
-      >
-        <span role="img" aria-label="price" style={{ fontSize: "2.5em" }}>
+      <ItemInfoBox>
+        <GalleryItemIcon role="img" aria-label="price">
           🗺
-        </span>
+        </GalleryItemIcon>
         <div>
           <ImageTitle>
             <strong>{item.title}</strong>
           </ImageTitle>
           <ImageSubTitle>{item.subtitle}</ImageSubTitle>
         </div>
-      </div>
+      </ItemInfoBox>
       <GalleryImage src={item.src} />
     </ItemBox>
   );
@@ -49,8 +61,7 @@ const allGalleryItems = aventuras.map((item) => {
 function InstaGallery() {
   return (
     <>
-      {/* TODO: center this. Change font */}
-      <h2>Nuestras Aventuras</h2>
+      <GalleryTitle>Nuestras Aventuras</GalleryTitle>
       {allGalleryItems}
     </>
   );

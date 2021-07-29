@@ -11,8 +11,8 @@ const images = [
 const messages = [
   "El amor nunca ha sido lo mío...",
   "...pero contigo no he dejado de soñar.",
-  "Tú me tienes así, loca por descubrir",
-  "Lo fácil que se te hace hacerme reír",
+  "Tú me tienes así, loca por descubrir...",
+  "...lo fácil que se te hace hacerme reír.",
   "¿Quieres ser mi novia?",
 ];
 

@@ -8,6 +8,7 @@ const Title = styled.h1`
 
 const HeaderBox = styled.header`
   position: sticky;
+  z-index: 10;
   top: 0;
   background-color: white;
 
@@ -19,7 +20,6 @@ const HeaderBox = styled.header`
 
 function Header({ isMenuOpen, setIsMenuOpen }) {
   return (
-    //   TODO: turn this into a styled-component
     <HeaderBox>
       <Burger setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
       <Menu setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
