@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/love-story/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/love-story/static/js/main.4f1534ad.chunk.js",
-    "main.js.map": "/love-story/static/js/main.4f1534ad.chunk.js.map",
+    "main.js": "/love-story/static/js/main.ef0b6ebf.chunk.js",
+    "main.js.map": "/love-story/static/js/main.ef0b6ebf.chunk.js.map",
     "runtime-main.js": "/love-story/static/js/runtime-main.6891499a.js",
     "runtime-main.js.map": "/love-story/static/js/runtime-main.6891499a.js.map",
     "static/js/2.f9bd6d08.chunk.js": "/love-story/static/js/2.f9bd6d08.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.6891499a.js",
     "static/js/2.f9bd6d08.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.4f1534ad.chunk.js"
+    "static/js/main.ef0b6ebf.chunk.js"
   ]
 }
